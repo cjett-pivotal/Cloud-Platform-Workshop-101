@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 1 ]; then
+  cf create-space workshop
   > users
   counter=1
   while [ $counter -le $1 ]
@@ -9,12 +10,12 @@ if [ $# -eq 1 ]; then
     PASS="$(openssl rand -base64 6)"
     echo "${PASS}" >> users
     cf create-user "user${counter}" "${PASS}"
-    cf set-space-role "user${counter}" Home Lab SpaceDeveloper
+    cf set-space-role "user${counter}" Home workshop SpaceDeveloper
     ((counter++))
     echo "" >> users
   done
 else
     echo "Script needs a single input i.e. setup_users.sh 1"
 fi
-
+cf target -o home -s workshop
 echo All done
