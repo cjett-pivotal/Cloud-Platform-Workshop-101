@@ -1,6 +1,0 @@
----
-applications:
-- name: cf-scale-boot-cory
-  memory: 1G
-  instances: 1
-  host: cf-scale-boot-cory
